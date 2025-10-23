@@ -165,9 +165,14 @@ const equipos = [
   { 
     nombre:'La Bordaleta', 
     logo:'https://i.postimg.cc/8Pbf8hZ9/LA-BORDALETA.png',
-    PJ:1, PG:1, PE:0, PP:0, GF:3, GC:2, DG:1, Pts:3,
-    goleadores:[{nombre:'Elo',goles:2},{nombre:'Seón',goles:1}],
-    mvp:'Elo',
+    PJ:2, PG:2, PE:0, PP:0, GF:6, GC:4, DG:2, Pts:6,
+    goleadores:[
+      {nombre:'Elo',goles:2},
+      {nombre:'Seón',goles:1},
+      {nombre:'Gorka',goles:2},
+      {nombre:'Pauito (Bordaleta juvenil)',goles:1}
+    ],
+    mvp:'Gorka',
     alineacion:[
       {pos:'portero', nombre:'Mauro'},
       {pos:'dfc-izq', nombre:'Llacer'},
@@ -182,8 +187,12 @@ const equipos = [
   { 
     nombre:'Big Diakha', 
     logo:'https://i.postimg.cc/FR2RLQvk/BIG-DIAKHA.png',
-    PJ:1, PG:0, PE:0, PP:1, GF:2, GC:3, DG:-1, Pts:0,
-    goleadores:[{nombre:'Guillem',goles:2}],
+    PJ:2, PG:0, PE:0, PP:2, GF:4, GC:6, DG:-2, Pts:0,
+    goleadores:[
+      {nombre:'Guillem',goles:2},
+      {nombre:'Jordi',goles:1},
+      {nombre:'Vicent',goles:1}
+    ],
     mvp:'',
     alineacion:[
       {pos:'portero', nombre:'Marc'},
@@ -199,6 +208,17 @@ const equipos = [
 ];
 
 const partidos = [
+  { 
+    equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2, 
+    fecha:'21/10/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Pauito (Bordaleta juvenil)'},
+      {equipo:'Big Diakha',jugador:'Jordi'},
+      {equipo:'Big Diakha',jugador:'Vicent'}
+    ]
+  },
   { 
     equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2, 
     fecha:'16/09/2025',
@@ -235,6 +255,7 @@ function actualizarTabla(){
     </tr>`;
   });
 
+  // --- Top Goleadores ---
   const topG = document.getElementById('topGoleadores'); topG.innerHTML='<h3>Top Goleadores</h3>';
   let goleadores = [];
   equipos.forEach(e=>e.goleadores.forEach(g=>goleadores.push({...g,equipo:e.nombre})));
@@ -246,12 +267,18 @@ function actualizarTabla(){
     topG.appendChild(p);
   });
 
+  // --- Top MVP ---
   const topM = document.getElementById('topMVP'); topM.innerHTML='<h3>Top MVP</h3>';
-  const mvpJugador = equipos[0].mvp || '-'; 
-  const pMvp = document.createElement('p'); 
-  pMvp.classList.add('top1'); 
-  pMvp.innerHTML = `1. ${mvpJugador}<span>1</span>`; 
-  topM.appendChild(pMvp);
+  const mvps = [
+    {nombre:'Elo',cantidad:1},
+    {nombre:'Gorka',cantidad:1}
+  ];
+  mvps.forEach((m,i)=>{
+    const p = document.createElement('p');
+    if(i==0)p.classList.add('top1');
+    p.innerHTML = `${i+1}. ${m.nombre}<span>${m.cantidad}</span>`;
+    topM.appendChild(p);
+  });
 }
 
 function toggleHistorial(){
@@ -259,54 +286,45 @@ function toggleHistorial(){
   if(hist.style.display==='block'){ hist.style.display='none'; return; }
   hist.style.display='block'; hist.innerHTML='';
 
-  partidos.slice().reverse().forEach(p=>{
+  // Mostrar el más reciente arriba (sin reverse)
+  partidos.forEach(p=>{
     const div = document.createElement('div'); div.className='partido';
     div.innerHTML=`<div style="text-align:center; font-size:0.9em; color:#aaa; margin-bottom:5px;">${p.fecha}</div>
       <div class="resultado">${p.equipo1} ${p.goles1} - ${p.goles2} ${p.equipo2}</div>`;
-
+    
     const cont = document.createElement('div'); cont.className='historialColumnas';
-    const col1 = document.createElement('div'); col1.className='columnaGol';
-    const col2 = document.createElement('div'); col2.className='columnaGol';
-    col1.innerHTML=`<h4>${p.equipo1}</h4>`;
-    col2.innerHTML=`<h4>${p.equipo2}</h4>`;
+    const col1 = document.createElement('div'); col1.className='columnaGol'; col1.innerHTML=`<h4>${p.equipo1}</h4>`;
+    const col2 = document.createElement('div'); col2.className='columnaGol'; col2.innerHTML=`<h4>${p.equipo2}</h4>`;
 
     p.anotadores.forEach(a=>{
-      const span = document.createElement('span'); 
-      span.textContent = a.jugador;
-      const veces = p.anotadores.filter(x=>x.jugador===a.jugador).length;
+      const span = document.createElement('span'); span.textContent=a.jugador;
+      const veces=p.anotadores.filter(x=>x.jugador===a.jugador).length;
       if(veces>1) span.style.fontWeight='bold';
-      if(a.equipo === p.equipo1) col1.appendChild(span);
-      else col2.appendChild(span);
+      if(a.equipo===p.equipo1) col1.appendChild(span); else col2.appendChild(span);
     });
 
-    cont.appendChild(col1);
-    cont.appendChild(col2);
-    div.appendChild(cont);
+    cont.appendChild(col1); cont.appendChild(col2); div.appendChild(cont);
     hist.appendChild(div);
   });
 }
 
 function mostrarEquipo(index){
-  const e = equipos[index];
+  const e=equipos[index];
   document.getElementById('pantalla1').classList.remove('activo');
   document.getElementById('pantalla2').classList.add('activo');
-  document.getElementById('nombreEquipo').textContent = e.nombre;
-  document.getElementById('logoEquipo').style.backgroundImage = `url('${e.logo}')`;
-
-  const campo = document.getElementById('alineacion');
-  campo.innerHTML='';
+  document.getElementById('nombreEquipo').textContent=e.nombre;
+  document.getElementById('logoEquipo').style.backgroundImage=`url('${e.logo}')`;
+  const campo=document.getElementById('alineacion'); campo.innerHTML='';
   e.alineacion.forEach(j=>{
-    const div = document.createElement('div'); div.className='jugador '+j.pos;
+    const div=document.createElement('div'); div.className='jugador '+j.pos;
     div.innerHTML=`<div class="foto"></div>${j.nombre}`;
     campo.appendChild(div);
   });
 }
-
 function volver(){
   document.getElementById('pantalla2').classList.remove('activo');
   document.getElementById('pantalla1').classList.add('activo');
 }
-
 actualizarTabla();
 </script>
 </body>
