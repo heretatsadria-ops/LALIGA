@@ -19,7 +19,6 @@ body {
   background: #0d0d0d;
 }
 
-/* Brillos animados de fondo */
 body::before {
   content: '';
   position: absolute;
@@ -40,7 +39,6 @@ body::before {
   100% { transform: translate(0,0); }
 }
 
-/* Pantallas y títulos */
 .pantalla { display: none; width:100%; min-height:100%; z-index:1; position:relative; }
 .activo { display: block; }
 
@@ -68,7 +66,6 @@ h1 { text-align:center; margin:20px 0; position:relative; z-index:1; }
 }
 @keyframes rgbFlow { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
 
-/* Tablas y tops */
 .tabla-container { width:100%; overflow-x:auto; margin:20px 0; }
 table { min-width:600px; border-collapse: collapse; width:100%; background:#1a1a1a; border-radius:10px; overflow:hidden; box-shadow:0 0 20px rgba(255,255,255,0.1); transition:0.3s; }
 table:hover { box-shadow:0 0 40px rgba(255,255,255,0.2); }
@@ -165,12 +162,13 @@ const equipos = [
   { 
     nombre:'La Bordaleta', 
     logo:'https://i.postimg.cc/8Pbf8hZ9/LA-BORDALETA.png',
-    PJ:2, PG:2, PE:0, PP:0, GF:6, GC:4, DG:2, Pts:6,
+    PJ:3, PG:3, PE:0, PP:0, GF:9, GC:5, DG:4, Pts:9,
     goleadores:[
       {nombre:'Elo',goles:2},
       {nombre:'Seón',goles:1},
-      {nombre:'Gorka',goles:2},
-      {nombre:'Pauito (Bordaleta juvenil)',goles:1}
+      {nombre:'Gorka',goles:4},
+      {nombre:'Pauito (Bordaleta juvenil)',goles:1},
+      {nombre:'Dani',goles:1}
     ],
     mvp:'Gorka',
     alineacion:[
@@ -187,11 +185,12 @@ const equipos = [
   { 
     nombre:'Big Diakha', 
     logo:'https://i.postimg.cc/FR2RLQvk/BIG-DIAKHA.png',
-    PJ:2, PG:0, PE:0, PP:2, GF:4, GC:6, DG:-2, Pts:0,
+    PJ:3, PG:0, PE:0, PP:3, GF:5, GC:9, DG:-4, Pts:0,
     goleadores:[
       {nombre:'Guillem',goles:2},
       {nombre:'Jordi',goles:1},
-      {nombre:'Vicent',goles:1}
+      {nombre:'Vicent',goles:1},
+      {nombre:'Pau',goles:1}
     ],
     mvp:'',
     alineacion:[
@@ -208,6 +207,16 @@ const equipos = [
 ];
 
 const partidos = [
+  { 
+    equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:1, 
+    fecha:'28/10/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Dani'},
+      {equipo:'Big Diakha',jugador:'Pau'}
+    ]
+  },
   { 
     equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2, 
     fecha:'21/10/2025',
@@ -270,8 +279,8 @@ function actualizarTabla(){
   // --- Top MVP ---
   const topM = document.getElementById('topMVP'); topM.innerHTML='<h3>Top MVP</h3>';
   const mvps = [
-    {nombre:'Elo',cantidad:1},
-    {nombre:'Gorka',cantidad:1}
+    {nombre:'Gorka',cantidad:2},
+    {nombre:'Elo',cantidad:1}
   ];
   mvps.forEach((m,i)=>{
     const p = document.createElement('p');
@@ -286,7 +295,6 @@ function toggleHistorial(){
   if(hist.style.display==='block'){ hist.style.display='none'; return; }
   hist.style.display='block'; hist.innerHTML='';
 
-  // Mostrar el más reciente arriba (sin reverse)
   partidos.forEach(p=>{
     const div = document.createElement('div'); div.className='partido';
     div.innerHTML=`<div style="text-align:center; font-size:0.9em; color:#aaa; margin-bottom:5px;">${p.fecha}</div>
