@@ -162,11 +162,11 @@ const equipos = [
   { 
     nombre:'La Bordaleta', 
     logo:'https://i.postimg.cc/8Pbf8hZ9/LA-BORDALETA.png',
-    PJ:3, PG:3, PE:0, PP:0, GF:9, GC:5, DG:4, Pts:9,
+    PJ:4, PG:3, PE:1, PP:0, GF:11, GC:7, DG:4, Pts:10,
     goleadores:[
       {nombre:'Elo',goles:2},
       {nombre:'Seón',goles:1},
-      {nombre:'Gorka',goles:4},
+      {nombre:'Gorka',goles:6},
       {nombre:'Pauito (Bordaleta juvenil)',goles:1},
       {nombre:'Dani',goles:1}
     ],
@@ -185,9 +185,10 @@ const equipos = [
   { 
     nombre:'Big Diakha', 
     logo:'https://i.postimg.cc/FR2RLQvk/BIG-DIAKHA.png',
-    PJ:3, PG:0, PE:0, PP:3, GF:5, GC:9, DG:-4, Pts:0,
+    PJ:4, PG:0, PE:1, PP:3, GF:7, GC:11, DG:-4, Pts:1,
     goleadores:[
-      {nombre:'Guillem',goles:2},
+      {nombre:'Guillem',goles:3},
+      {nombre:'Antoni',goles:1},
       {nombre:'Jordi',goles:1},
       {nombre:'Vicent',goles:1},
       {nombre:'Pau',goles:1}
@@ -207,6 +208,16 @@ const equipos = [
 ];
 
 const partidos = [
+  { 
+    equipo1:'La Bordaleta', goles1:2, equipo2:'Big Diakha', goles2:2, 
+    fecha:'30/10/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'Big Diakha',jugador:'Guillem'},
+      {equipo:'Big Diakha',jugador:'Antoni'}
+    ]
+  },
   { 
     equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:1, 
     fecha:'28/10/2025',
@@ -280,7 +291,7 @@ function actualizarTabla(){
   const topM = document.getElementById('topMVP'); topM.innerHTML='<h3>Top MVP</h3>';
   const mvps = [
     {nombre:'Gorka',cantidad:2},
-    {nombre:'Elo',cantidad:1}
+    {nombre:'Elo',cantidad:2}
   ];
   mvps.forEach((m,i)=>{
     const p = document.createElement('p');
