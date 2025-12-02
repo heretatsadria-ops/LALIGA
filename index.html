@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LALIGA ELS ÉVOLS</title>
 <style>
+/* --- TODOS TUS ESTILOS IGUAL QUE ANTES, NO TOCADO --- */
 body {
   font-family: Arial, sans-serif;
   color: white;
@@ -18,54 +19,14 @@ body {
   height: 100vh;
   background: #0d0d0d;
 }
-
-body::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle, rgba(255,255,0,0.08) 0%, transparent 60%), 
-              radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 60%), 
-              radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
-  background-repeat: no-repeat;
-  background-size: 200px 200px, 250px 250px, 150px 150px;
-  animation: moverBrillos 20s linear infinite;
-  z-index:0;
-}
-
-@keyframes moverBrillos {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(50px,50px); }
-  100% { transform: translate(0,0); }
-}
-
+body::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,0,0.08) 0%, transparent 60%), radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 60%), radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%); background-repeat: no-repeat; background-size: 200px 200px, 250px 250px, 150px 150px; animation: moverBrillos 20s linear infinite; z-index:0; }
+@keyframes moverBrillos { 0% { transform: translate(0,0); } 50% { transform: translate(50px,50px); } 100% { transform: translate(0,0); } }
 .pantalla { display: none; width:100%; min-height:100%; z-index:1; position:relative; }
 .activo { display: block; }
-
 h1 { text-align:center; margin:20px 0; position:relative; z-index:1; }
-.laliga {
-  font-weight:bold;
-  font-size:5em;
-  background: linear-gradient(90deg, red, yellow);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rgbFlow 3s infinite linear;
-  display:block;
-  text-shadow:0 0 8px rgba(255,255,0,0.3);
-  position:relative; z-index:1;
-}
-.elsevols {
-  font-weight:300;
-  font-size:2em;
-  color:#ccc;
-  display:block;
-  margin-top:5px;
-  text-shadow: 0 0 3px rgba(255,255,255,0.2);
-  position:relative; z-index:1;
-}
+.laliga { font-weight:bold; font-size:5em; background: linear-gradient(90deg, red, yellow); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rgbFlow 3s infinite linear; display:block; text-shadow:0 0 8px rgba(255,255,0,0.3); position:relative; z-index:1; }
+.elsevols { font-weight:300; font-size:2em; color:#ccc; display:block; margin-top:5px; text-shadow: 0 0 3px rgba(255,255,255,0.2); position:relative; z-index:1; }
 @keyframes rgbFlow { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
-
 .tabla-container { width:100%; overflow-x:auto; margin:20px 0; }
 table { min-width:600px; border-collapse: collapse; width:100%; background:#1a1a1a; border-radius:10px; overflow:hidden; box-shadow:0 0 20px rgba(255,255,255,0.1); transition:0.3s; }
 table:hover { box-shadow:0 0 40px rgba(255,255,255,0.2); }
@@ -74,34 +35,27 @@ th { background:#222; }
 tr:hover { background:#333; cursor:pointer; }
 .team { display:flex; align-items:center; gap:10px; justify-content:center; cursor:pointer; }
 .logo { width:30px; height:30px; border-radius:50%; display:inline-block; background-size:cover; box-shadow:0 0 5px #fff; }
-
 #tops { display:flex; justify-content:center; gap:20px; margin:20px 0; flex-wrap:wrap; z-index:1; position:relative; }
 .top-box { background:#2a2a2a; padding:15px; border-radius:10px; width:45%; min-width:200px; box-shadow:0 0 15px rgba(255,255,255,0.1); transition:0.3s; }
 .top-box:hover { box-shadow:0 0 30px rgba(255,255,255,0.3); }
 .top-box h3 { text-align:center; margin-bottom:10px; text-shadow:0 0 3px rgba(255,255,255,0.2); }
 .top-box p { display:flex; justify-content: space-between; margin:3px 0; padding:0 5px; font-family: monospace; }
 .top1 { font-size:1.3em; color:red; font-weight:bold; text-shadow: 0 0 3px #f00; }
-
 .btn-partidos { margin:20px auto; display:block; padding:15px 30px; font-size:1.5em; cursor:pointer; background:#222; border:none; border-radius:5px; transition:0.3s; color:white; width:100%; max-width:none; box-shadow:0 0 10px rgba(255,255,255,0.1); }
 .btn-partidos:hover { background:#444; box-shadow:0 0 20px rgba(255,255,255,0.3); }
-
 .partido { margin-bottom:20px; padding:10px; background:#1a1a1a; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,0.1); transition:0.3s; }
 .partido:hover { box-shadow:0 0 25px rgba(255,255,255,0.2); }
 .resultado { font-weight:bold; font-size:1.3em; text-align:center; margin-bottom:10px; text-shadow: 0 0 3px rgba(255,255,255,0.2); }
-
 .historialColumnas { display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; }
 .columnaGol { width:48%; display:flex; flex-direction:column; gap:2px; }
 .columnaGol h4 { text-align:center; margin:0 0 5px 0; font-size:0.9em; color:#ccc; text-shadow:0 0 3px rgba(255,255,255,0.2); }
 .columnaGol span { background:#333; padding:2px 5px; border-radius:3px; font-size:0.9em; box-shadow:0 0 2px rgba(255,255,0,0.2); }
-
 .team-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; flex-wrap:wrap; justify-content:center; }
 .team-logo { width:120px; height:120px; border-radius:50%; background:#444; background-size:cover; box-shadow:0 0 20px rgba(255,255,255,0.2); }
 .team-name { font-size:3em; font-weight:bold; text-align:center; text-shadow:0 0 5px rgba(255,255,255,0.2); }
-
 .campo { width:100%; background:green; border-radius:15px; padding:20px; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(5,70px); gap:10px; justify-items:center; align-items:center; box-shadow:0 0 20px rgba(0,0,0,0.5); }
 .jugador { display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; text-align:center; text-shadow:0 0 2px #000; }
 .jugador .foto { width:50px; height:50px; border-radius:50%; background:#555; margin-bottom:5px; background-size:cover; box-shadow:0 0 5px #fff; }
-
 .portero { grid-column:2/3; grid-row:5; }
 .dfc-izq { grid-column:1/2; grid-row:4; }
 .dfc-centro { grid-column:2/3; grid-row:4; }
@@ -110,23 +64,9 @@ tr:hover { background:#333; cursor:pointer; }
 .ext-izq { grid-column:1/2; grid-row:2; }
 .ext-der { grid-column:3/4; grid-row:2; }
 .delantero { grid-column:2/3; grid-row:1; }
-
 .volver { margin-top:20px; padding:10px 20px; font-size:1.2em; cursor:pointer; background:#222; color:white; border:none; border-radius:5px; transition:0.3s; width:100%; max-width:none; box-shadow:0 0 10px rgba(255,255,255,0.1); }
 .volver:hover { background:#444; box-shadow:0 0 20px rgba(255,255,255,0.3); }
-
-@media(max-width:600px){
-  body { padding:10px; }
-  .laliga { font-size:3em; }
-  .elsevols { font-size:1.5em; }
-  .team-name { font-size:2em; }
-  .campo { grid-template-rows:repeat(5,60px); gap:5px; }
-  .jugador .foto { width:40px; height:40px; }
-  #tops { flex-direction:column; gap:10px; }
-  .top-box { width:100%; min-width:0; }
-  .historialColumnas { flex-direction:column; }
-  .columnaGol { width:100%; margin-bottom:10px; }
-  .tabla-container { overflow-x:auto; }
-}
+@media(max-width:600px){ body { padding:10px; } .laliga { font-size:3em; } .elsevols { font-size:1.5em; } .team-name { font-size:2em; } .campo { grid-template-rows:repeat(5,60px); gap:5px; } .jugador .foto { width:40px; height:40px; } #tops { flex-direction:column; gap:10px; } .top-box { width:100%; min-width:0; } .historialColumnas { flex-direction:column; } .columnaGol { width:100%; margin-bottom:10px; } .tabla-container { overflow-x:auto; } }
 </style>
 </head>
 <body>
@@ -157,20 +97,13 @@ tr:hover { background:#333; cursor:pointer; }
 </div>
 
 <script>
-// --- Equipos y partidos ---
+/* ---------------------------------------------------------
+   DATOS DE EQUIPOS (sin estadísticas, ahora se calculan)
+------------------------------------------------------------ */
 const equipos = [
   { 
-    nombre:'La Bordaleta', 
+    nombre:'La Bordaleta',
     logo:'https://i.postimg.cc/8Pbf8hZ9/LA-BORDALETA.png',
-    PJ:4, PG:3, PE:1, PP:0, GF:11, GC:7, DG:4, Pts:10,
-    goleadores:[
-      {nombre:'Elo',goles:2},
-      {nombre:'Seón',goles:1},
-      {nombre:'Gorka',goles:6},
-      {nombre:'Pauito (Bordaleta juvenil)',goles:1},
-      {nombre:'Dani',goles:1}
-    ],
-    mvp:'Gorka',
     alineacion:[
       {pos:'portero', nombre:'Mauro'},
       {pos:'dfc-izq', nombre:'Llacer'},
@@ -183,33 +116,68 @@ const equipos = [
     ]
   },
   { 
-    nombre:'Big Diakha', 
+    nombre:'Big Diakha',
     logo:'https://i.postimg.cc/FR2RLQvk/BIG-DIAKHA.png',
-    PJ:4, PG:0, PE:1, PP:3, GF:7, GC:11, DG:-4, Pts:1,
-    goleadores:[
-      {nombre:'Guillem',goles:3},
-      {nombre:'Antoni',goles:1},
-      {nombre:'Jordi',goles:1},
-      {nombre:'Vicent',goles:1},
-      {nombre:'Pau',goles:1}
-    ],
-    mvp:'',
     alineacion:[
-      {pos:'portero', nombre:'Marc'},
+      {pos:'portero', nombre:'Antoni'},
       {pos:'dfc-izq', nombre:'Vicent'},
       {pos:'dfc-centro', nombre:'Marc B.'},
-      {pos:'dfc-der', nombre:'Antoni'},
+      {pos:'dfc-der', nombre:'Petanca'},
       {pos:'pivote', nombre:'Jordi'},
-      {pos:'ext-izq', nombre:'Pau'},
-      {pos:'ext-der', nombre:'Guillem'},
-      {pos:'delantero', nombre:'Petanca'}
+      {pos:'ext-izq', nombre:'Marc'},
+      {pos:'ext-der', nombre:'Pau'},
+      {pos:'delantero', nombre:'Guillem'}
     ]
   }
 ];
 
+/* ---------------------------------------------------------
+   DATOS DE PARTIDOS (goles + anotadores)
+------------------------------------------------------------ */
 const partidos = [
-  { 
-    equipo1:'La Bordaleta', goles1:2, equipo2:'Big Diakha', goles2:2, 
+  { equipo1:'La Bordaleta', goles1:0, equipo2:'Big Diakha', goles2:1,
+    fecha:'02/12/2025', anotadores:[{equipo:'Big Diakha',jugador:'Antoni'}]
+  },
+  { equipo1:'La Bordaleta', goles1:4, equipo2:'Big Diakha', goles2:3,
+    fecha:'18/11/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Dani'},
+      {equipo:'Big Diakha',jugador:'Antoni'},
+      {equipo:'La Bordaleta',jugador:'Elo'},
+      {equipo:'Big Diakha',jugador:'Guillem'},
+      {equipo:'Big Diakha',jugador:'Antoni'},
+      {equipo:'La Bordaleta',jugador:'Adrià'}
+    ]
+  },
+  { equipo1:'La Bordaleta', goles1:7, equipo2:'Big Diakha', goles2:2,
+    fecha:'11/11/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Dani'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'Big Diakha',jugador:'Guillem'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'Big Diakha',jugador:'Antoni'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Dani'},
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Gorka'}
+    ]
+  },
+  { equipo1:'La Bordaleta', goles1:5, equipo2:'Big Diakha', goles2:3,
+    fecha:'04/11/2025',
+    anotadores:[
+      {equipo:'La Bordaleta',jugador:'Gorka'},
+      {equipo:'La Bordaleta',jugador:'Adrià'},
+      {equipo:'Big Diakha',jugador:'Guillem'},
+      {equipo:'La Bordaleta',jugador:'Adrià'},
+      {equipo:'Big Diakha',jugador:'Antoni'},
+      {equipo:'La Bordaleta',jugador:'Andreu'},
+      {equipo:'Big Diakha',jugador:'Adil (Big Diakha juvenil)'},
+      {equipo:'La Bordaleta',jugador:'Gorka'}
+    ]
+  },
+  { equipo1:'La Bordaleta', goles1:2, equipo2:'Big Diakha', goles2:2,
     fecha:'30/10/2025',
     anotadores:[
       {equipo:'La Bordaleta',jugador:'Gorka'},
@@ -218,8 +186,7 @@ const partidos = [
       {equipo:'Big Diakha',jugador:'Antoni'}
     ]
   },
-  { 
-    equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:1, 
+  { equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:1,
     fecha:'28/10/2025',
     anotadores:[
       {equipo:'La Bordaleta',jugador:'Gorka'},
@@ -228,8 +195,7 @@ const partidos = [
       {equipo:'Big Diakha',jugador:'Pau'}
     ]
   },
-  { 
-    equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2, 
+  { equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2,
     fecha:'21/10/2025',
     anotadores:[
       {equipo:'La Bordaleta',jugador:'Gorka'},
@@ -239,8 +205,7 @@ const partidos = [
       {equipo:'Big Diakha',jugador:'Vicent'}
     ]
   },
-  { 
-    equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2, 
+  { equipo1:'La Bordaleta', goles1:3, equipo2:'Big Diakha', goles2:2,
     fecha:'16/09/2025',
     anotadores:[
       {equipo:'La Bordaleta',jugador:'Elo'},
@@ -252,12 +217,88 @@ const partidos = [
   }
 ];
 
-// --- Funciones ---
+/* ---------------------------------------------------------
+   FUNCIÓN PARA CALCULAR TODO AUTOMÁTICAMENTE
+------------------------------------------------------------ */
+function calcularEstadisticas() {
+
+  // Inicializar estadísticas vacías
+  equipos.forEach(e=>{
+    e.PJ = e.PG = e.PE = e.PP = 0;
+    e.GF = e.GC = 0;
+    e.DG = 0;
+    e.Pts = 0;
+    e.goleadores = [];
+    e.mvp = "";
+  });
+
+  const golesJugadores = {};
+  const mvpContador = {};
+
+  partidos.forEach(p => {
+
+    const e1 = equipos.find(e=>e.nombre===p.equipo1);
+    const e2 = equipos.find(e=>e.nombre===p.equipo2);
+
+    e1.PJ++; e2.PJ++;
+    e1.GF += p.goles1; e1.GC += p.goles2;
+    e2.GF += p.goles2; e2.GC += p.goles1;
+
+    if(p.goles1 > p.goles2){ e1.PG++; e2.PP++; e1.Pts+=3; }
+    else if(p.goles1 < p.goles2){ e2.PG++; e1.PP++; e2.Pts+=3; }
+    else { e1.PE++; e2.PE++; e1.Pts++; e2.Pts++; }
+
+    // Goleadores individuales
+    p.anotadores.forEach(a=>{
+      const equipo = equipos.find(e=>e.nombre===a.equipo);
+      const jugador = a.jugador;
+
+      let reg = equipo.goleadores.find(g=>g.nombre===jugador);
+      if(!reg){ equipo.goleadores.push({nombre:jugador, goles:0}); reg = equipo.goleadores.find(g=>g.nombre===jugador); }
+      reg.goles++;
+
+      if(!golesJugadores[jugador]) golesJugadores[jugador]=0;
+      golesJugadores[jugador]++;
+    });
+
+    // MVP automático = quien más goles marcó en ese partido
+    let maxGoles = 0;
+    let mejorJugador = null;
+
+    p.anotadores.forEach(a=>{
+      const veces = p.anotadores.filter(x=>x.jugador===a.jugador).length;
+      if(veces > maxGoles){
+        maxGoles = veces;
+        mejorJugador = a.jugador;
+      }
+    });
+
+    if(mejorJugador){
+      if(!mvpContador[mejorJugador]) mvpContador[mejorJugador]=0;
+      mvpContador[mejorJugador]++;
+    }
+  });
+
+  // Calcular DG
+  equipos.forEach(e => e.DG = e.GF - e.GC);
+
+  return { golesJugadores, mvpContador };
+}
+
+/* ---------------------------------------------------------
+   TABLA DE CLASIFICACIÓN
+------------------------------------------------------------ */
 function actualizarTabla(){
+
+  const { golesJugadores, mvpContador } = calcularEstadisticas();
+
   const tabla = document.getElementById('tablaClasificacion');
-  tabla.innerHTML = `<tr>
-    <th>Pos</th><th>Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th>
-  </tr>`;
+
+  tabla.innerHTML = `
+    <tr>
+      <th>Pos</th><th>Equipo</th><th>PJ</th><th>PG</th><th>PE</th>
+      <th>PP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th>
+    </tr>`;
 
   equipos.sort((a,b)=>{
     if(b.Pts !== a.Pts) return b.Pts - a.Pts;
@@ -266,63 +307,78 @@ function actualizarTabla(){
   });
 
   equipos.forEach((e,i)=>{
-    tabla.innerHTML += `<tr onclick="mostrarEquipo(${i})">
-      <td>${i+1}</td>
-      <td class="team"><div class="logo" style="background-image:url('${e.logo}')"></div>${e.nombre}</td>
-      <td>${e.PJ}</td><td>${e.PG}</td><td>${e.PE}</td><td>${e.PP}</td>
-      <td>${e.GF}</td><td>${e.GC}</td><td>${e.DG}</td>
-      <td>${e.Pts}</td>
-    </tr>`;
+    tabla.innerHTML += `
+      <tr onclick="mostrarEquipo(${i})">
+        <td>${i+1}</td>
+        <td class="team"><div class="logo" style="background-image:url('${e.logo}')"></div>${e.nombre}</td>
+        <td>${e.PJ}</td><td>${e.PG}</td><td>${e.PE}</td><td>${e.PP}</td>
+        <td>${e.GF}</td><td>${e.GC}</td><td>${e.DG}</td>
+        <td>${e.Pts}</td>
+      </tr>`;
   });
 
-  // --- Top Goleadores ---
-  const topG = document.getElementById('topGoleadores'); topG.innerHTML='<h3>Top Goleadores</h3>';
-  let goleadores = [];
-  equipos.forEach(e=>e.goleadores.forEach(g=>goleadores.push({...g,equipo:e.nombre})));
-  goleadores.sort((a,b)=>b.goles-a.goles);
-  goleadores.forEach((g,i)=>{
+  /* --- TOP GOLEADORES --- */
+  const topG = document.getElementById('topGoleadores');
+  topG.innerHTML = "<h3>Top Goleadores</h3>";
+
+  const listaG = Object.entries(golesJugadores)
+                       .map(x => ({nombre:x[0], goles:x[1]}))
+                       .sort((a,b)=>b.goles-a.goles);
+
+  listaG.forEach((g,i)=>{
     const p = document.createElement('p'); 
-    if(i==0)p.classList.add('top1'); 
-    p.innerHTML = `${i+1}. ${g.nombre}<span>${g.goles}</span>`; 
+    if(i==0) p.classList.add('top1');
+    p.innerHTML = `${i+1}. ${g.nombre}<span>${g.goles}</span>`;
     topG.appendChild(p);
   });
 
-  // --- Top MVP ---
-  const topM = document.getElementById('topMVP'); topM.innerHTML='<h3>Top MVP</h3>';
-  const mvps = [
-    {nombre:'Gorka',cantidad:2},
-    {nombre:'Elo',cantidad:2}
-  ];
-  mvps.forEach((m,i)=>{
+  /* --- TOP MVP --- */
+  const topM = document.getElementById('topMVP');
+  topM.innerHTML = "<h3>Top MVP</h3>";
+
+  const listaM = Object.entries(mvpContador)
+                       .map(x=>({nombre:x[0], cantidad:x[1]}))
+                       .sort((a,b)=>b.cantidad-a.cantidad);
+
+  listaM.forEach((m,i)=>{
     const p = document.createElement('p');
-    if(i==0)p.classList.add('top1');
+    if(i==0) p.classList.add('top1');
     p.innerHTML = `${i+1}. ${m.nombre}<span>${m.cantidad}</span>`;
     topM.appendChild(p);
   });
 }
 
+/* ---------------------------------------------------------
+   RESTO IGUAL QUE TU CÓDIGO ORIGINAL
+------------------------------------------------------------ */
 function toggleHistorial(){
   const hist = document.getElementById('historialPartidos');
   if(hist.style.display==='block'){ hist.style.display='none'; return; }
   hist.style.display='block'; hist.innerHTML='';
 
   partidos.forEach(p=>{
-    const div = document.createElement('div'); div.className='partido';
+    const div = document.createElement('div'); 
+    div.className='partido';
     div.innerHTML=`<div style="text-align:center; font-size:0.9em; color:#aaa; margin-bottom:5px;">${p.fecha}</div>
-      <div class="resultado">${p.equipo1} ${p.goles1} - ${p.goles2} ${p.equipo2}</div>`;
+    <div class="resultado">${p.equipo1} ${p.goles1} - ${p.goles2} ${p.equipo2}</div>`;
     
-    const cont = document.createElement('div'); cont.className='historialColumnas';
+    const cont = document.createElement('div'); 
+    cont.className='historialColumnas';
     const col1 = document.createElement('div'); col1.className='columnaGol'; col1.innerHTML=`<h4>${p.equipo1}</h4>`;
     const col2 = document.createElement('div'); col2.className='columnaGol'; col2.innerHTML=`<h4>${p.equipo2}</h4>`;
 
     p.anotadores.forEach(a=>{
-      const span = document.createElement('span'); span.textContent=a.jugador;
-      const veces=p.anotadores.filter(x=>x.jugador===a.jugador).length;
+      const span = document.createElement('span'); 
+      span.textContent=a.jugador;
+      const veces = p.anotadores.filter(x=>x.jugador===a.jugador).length;
       if(veces>1) span.style.fontWeight='bold';
-      if(a.equipo===p.equipo1) col1.appendChild(span); else col2.appendChild(span);
+      if(a.equipo===p.equipo1) col1.appendChild(span); 
+      else col2.appendChild(span);
     });
 
-    cont.appendChild(col1); cont.appendChild(col2); div.appendChild(cont);
+    cont.appendChild(col1); 
+    cont.appendChild(col2); 
+    div.appendChild(cont);
     hist.appendChild(div);
   });
 }
@@ -340,11 +396,14 @@ function mostrarEquipo(index){
     campo.appendChild(div);
   });
 }
+
 function volver(){
   document.getElementById('pantalla2').classList.remove('activo');
   document.getElementById('pantalla1').classList.add('activo');
 }
+
 actualizarTabla();
 </script>
+
 </body>
 </html>
